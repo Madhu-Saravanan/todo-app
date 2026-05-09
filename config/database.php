@@ -49,11 +49,7 @@ class Database {
                 error_log('[DB Error] ' . $e->getMessage());
                 die(json_encode([
                     'success' => false,
-                    'message' => $e->getMessage(),
-                    'host'    => DB_HOST,
-                    'port'    => DB_PORT,
-                    'db'      => DB_NAME,
-                    'user'    => DB_USER,
+                    'message' => 'Database connection failed. Please check your configuration.',
                 ]));
             }
         }
