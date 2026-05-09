@@ -19,7 +19,7 @@ $csrf       = generateCsrfToken();
   <!-- Brand -->
   <div class="sidebar-brand">
     <span class="brand-icon"><i class="bi bi-lightning-charge-fill"></i></span>
-    <span class="brand-text">AntiGravity</span>
+    <span class="brand-text">Todo</span>
   </div>
 
   <!-- Navigation links -->

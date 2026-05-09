@@ -4,7 +4,7 @@
 // ============================================================
 
 // --- App Settings ---
-define('APP_NAME',    'AntiGravity Todo');
+define('APP_NAME',    'Todo');
 define('APP_VERSION', '1.0.0');
 // APP_URL: set via env var on Vercel; falls back to XAMPP local default
 define('APP_URL',     rtrim(getenv('APP_URL') ?: 'http://localhost/ToDo', '/'));

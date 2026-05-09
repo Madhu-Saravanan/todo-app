@@ -1,6 +1,4 @@
-# AntiGravity Todo App
-
-QjReBLXgnO4X1Ixu
+# Todo App
 
 > A modern, full-featured Todo application built with **PHP (Core), MySQL, Bootstrap 5, and AJAX** — designed to run in a XAMPP environment.
 
@@ -105,7 +103,7 @@ mysql -u root -p < C:/xampp/htdocs/ToDo/database/schema.sql
 Open `config/config.php` and adjust:
 ```php
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'antigravity_todo');
+define('DB_NAME', 'todo_db');
 define('DB_USER', 'root');
 define('DB_PASS', '');          // Empty by default in XAMPP
 define('APP_URL', 'http://localhost/ToDo');
