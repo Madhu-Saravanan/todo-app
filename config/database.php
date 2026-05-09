@@ -28,6 +28,18 @@ class Database {
 
             // TiDB Cloud and other remote hosts require SSL
             if (!in_array(DB_HOST, ['localhost', '127.0.0.1'], true)) {
+                // Find the system CA bundle (path varies by Linux distro)
+                $caBundles = [
+                    '/etc/ssl/certs/ca-certificates.crt',  // Debian/Ubuntu
+                    '/etc/pki/tls/certs/ca-bundle.crt',    // Amazon Linux / CentOS
+                    '/etc/ssl/cert.pem',                    // Alpine
+                ];
+                foreach ($caBundles as $ca) {
+                    if (file_exists($ca)) {
+                        $options[PDO::MYSQL_ATTR_SSL_CA] = $ca;
+                        break;
+                    }
+                }
                 $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
             }
 
