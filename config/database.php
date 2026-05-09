@@ -34,11 +34,14 @@ class Database {
             try {
                 self::$instance = new PDO($dsn, DB_USER, DB_PASS, $options);
             } catch (PDOException $e) {
-                // Log the real error server-side, show generic message to user
                 error_log('[DB Error] ' . $e->getMessage());
                 die(json_encode([
                     'success' => false,
-                    'message' => 'Database connection failed. Please check your configuration.'
+                    'message' => $e->getMessage(),
+                    'host'    => DB_HOST,
+                    'port'    => DB_PORT,
+                    'db'      => DB_NAME,
+                    'user'    => DB_USER,
                 ]));
             }
         }
