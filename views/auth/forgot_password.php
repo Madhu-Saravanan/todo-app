@@ -30,6 +30,9 @@ redirectIfAuth();
       <span class="brand-icon"><i class="bi bi-lightning-charge-fill"></i></span>
       <span class="brand-text">Todo</span>
     </div>
+    <p class="text-center small mb-1" style="color:var(--text-muted);letter-spacing:.3px">
+      Organize tasks &middot; Track progress &middot; Get things done
+    </p>
 
     <h1 class="auth-title">Forgot password? 🔐</h1>
     <p class="auth-subtitle">Enter your email and we'll send a reset link.</p>

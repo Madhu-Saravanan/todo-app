@@ -40,6 +40,9 @@ if (!$user) {
       <span class="brand-icon"><i class="bi bi-lightning-charge-fill"></i></span>
       <span class="brand-text">Todo</span>
     </div>
+    <p class="text-center small mb-1" style="color:var(--text-muted);letter-spacing:.3px">
+      Organize tasks &middot; Track progress &middot; Get things done
+    </p>
 
     <h1 class="auth-title">Set new password 🔑</h1>
     <p class="auth-subtitle">Choose a strong password for your account.</p>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Todo App – Manage your tasks with style.">
+  <meta name="description" content="Todo App – Organize your tasks by priority and group, track progress, set due dates, and stay on top of everything — all in one place.">
   <title><?= isset($pageTitle) ? e($pageTitle) . ' | ' : '' ?>Todo</title>
 
   <!-- Bootstrap 5 CSS -->
