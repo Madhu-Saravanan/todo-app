@@ -1,0 +1,10 @@
+# Apache-specific — not used on Vercel
+.htaccess
+
+# SQL files — run manually on your DB host, not deployed
+database/
+
+# Local development files
+.claude/
+fix_demo_password.php
+*.log

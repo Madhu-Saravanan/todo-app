@@ -1,0 +1,45 @@
+/* ============================================================
+   AntiGravity Todo App — Auth Page Styles
+   ============================================================ */
+
+/* Animated gradient background */
+.auth-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 30%, rgba(99,102,241,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 70%, rgba(139,92,246,.14) 0%, transparent 60%),
+    #0f172a;
+  animation: bgShift 10s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift {
+  0%   { background-position: 20% 30%, 80% 70%; }
+  100% { background-position: 30% 40%, 70% 60%; }
+}
+
+/* Floating shapes */
+.auth-bg::before, .auth-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: .35;
+  animation: float 8s ease-in-out infinite;
+}
+.auth-bg::before {
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, #6366f1, transparent);
+  top: -80px; left: -80px;
+}
+.auth-bg::after {
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, #8b5cf6, transparent);
+  bottom: -60px; right: -60px;
+  animation-delay: -4s;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(20px); }
+}

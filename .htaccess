@@ -1,0 +1,59 @@
+# ============================================================
+# AntiGravity Todo App – Apache .htaccess
+# ============================================================
+
+Options -Indexes
+Options -MultiViews
+
+# ---- Security Headers ----
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ---- Hide sensitive directories from web access ----
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /ToDo/
+
+    # Deny direct browser access to pure back-end folders only.
+    # NOTE: controllers/ and ajax/ are intentionally NOT blocked —
+    # HTML forms POST directly to those scripts.
+    RewriteRule ^(config|models|includes|database)/ - [F,L]
+
+    # Optional: redirect bare /ToDo/ to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^$ index.php [L]
+</IfModule>
+
+# ---- Deny access to hidden files ----
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ---- PHP error display off in production ----
+<IfModule mod_php.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+</IfModule>
+
+# ---- Browser caching for static assets ----
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css             "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png            "access plus 1 year"
+    ExpiresByType image/jpeg           "access plus 1 year"
+    ExpiresByType image/svg+xml        "access plus 1 month"
+    ExpiresByType image/x-icon         "access plus 1 year"
+</IfModule>
+
+# ---- GZIP Compression ----
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json
+</IfModule>

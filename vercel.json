@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.php",            "use": "vercel-php@0.7.2" },
+    { "src": "views/**/*.php",       "use": "vercel-php@0.7.2" },
+    { "src": "controllers/**/*.php", "use": "vercel-php@0.7.2" },
+    { "src": "ajax/**/*.php",        "use": "vercel-php@0.7.2" },
+    { "src": "api/**/*.php",         "use": "vercel-php@0.7.2" }
+  ],
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)",        "dest": "/$1" }
+  ]
+}

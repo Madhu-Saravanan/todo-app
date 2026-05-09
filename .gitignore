@@ -1,0 +1,12 @@
+# Local dev only
+fix_demo_password.php
+*.log
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# XAMPP local config (env vars used on Vercel instead)
+# config/config.php is safe to commit — credentials come from env vars
