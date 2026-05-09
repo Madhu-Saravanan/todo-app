@@ -26,6 +26,11 @@ class Database {
                 PDO::MYSQL_ATTR_FOUND_ROWS   => true,
             ];
 
+            // TiDB Cloud and other remote hosts require SSL
+            if (!in_array(DB_HOST, ['localhost', '127.0.0.1'], true)) {
+                $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+            }
+
             try {
                 self::$instance = new PDO($dsn, DB_USER, DB_PASS, $options);
             } catch (PDOException $e) {
