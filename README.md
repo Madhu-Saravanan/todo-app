@@ -173,6 +173,50 @@ To find the reset URL:
 | Icons | Bootstrap Icons 1.11 |
 | Fonts | Google Fonts – Inter |
 | Environment | XAMPP (Apache + MySQL) |
+| Deployment | Vercel + TiDB Cloud (production) |
+
+---
+
+## ☁️ Hosting (Production)
+
+The live version of this app is deployed on **Vercel** using a cloud MySQL database on **TiDB Cloud**.
+
+### Services Used
+
+| Service | Purpose | Details |
+|---|---|---|
+| [Vercel](https://vercel.com) | Hosting platform | Serverless PHP deployment |
+| `vercel-php@0.7.2` | PHP runtime on Vercel | Runs PHP 8.x on Vercel serverless functions |
+| [TiDB Cloud](https://tidbcloud.com) | Cloud MySQL database | MySQL-compatible, free tier available |
+| GitHub | Source control + CI/CD trigger | Push to `main` → Vercel auto-deploys |
+
+### Environment Variables (set in Vercel Dashboard)
+
+| Variable | Example Value | Description |
+|---|---|---|
+| `APP_URL` | `https://your-app.vercel.app` | Public URL of the deployed app |
+| `DB_HOST` | `gateway01.ap-southeast-1.prod.aws.tidbcloud.com` | TiDB Cloud host |
+| `DB_PORT` | `4000` | TiDB Cloud port (default: 4000) |
+| `DB_NAME` | `antigravity_todo_db` | Database name |
+| `DB_USER` | `<your-tidb-user>` | TiDB Cloud username |
+| `DB_PASS` | `<your-tidb-password>` | TiDB Cloud password |
+
+> Set these in: Vercel Dashboard → Your Project → Settings → Environment Variables
+
+### How Deployment Works
+
+1. Push code to GitHub (`main` branch)
+2. Vercel detects the push and auto-builds using `vercel.json`
+3. PHP files are served via `vercel-php@0.7.2` (serverless functions)
+4. Static assets (`assets/`) are served via `@vercel/static`
+5. All requests are routed through the rules in `vercel.json`
+
+### Key Adaptations Made for Vercel
+
+- **DB-backed sessions** (`config/session.php`) — Vercel serverless instances don't share a filesystem, so file-based PHP sessions don't work. Sessions are stored in a `sessions` DB table instead.
+- **SSL for database** (`config/database.php`) — Any non-localhost host (including TiDB Cloud) automatically gets SSL enabled using the system CA bundle.
+- **Environment variables** — All credentials are read from `getenv()` in `config/config.php`; no hardcoded secrets.
+- **`.vercelignore`** — Excludes `.htaccess`, `database/` SQL files, and local-only scripts from the Vercel build.
 
 ---
 
