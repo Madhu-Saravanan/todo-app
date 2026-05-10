@@ -12,7 +12,7 @@ $user  = $token ? UserModel::findByResetToken($token) : null;
 
 if (!$user) {
     $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'This reset link is invalid or has expired.'];
-    header('Location: ' . APP_URL . '/views/auth/forgot_password.php');
+    header('Location: ' . APP_URL . '/views/auth/forgot_password');
     exit;
 }
 ?>
@@ -54,7 +54,7 @@ if (!$user) {
     <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <form action="<?= APP_URL ?>/controllers/AuthController.php?action=reset" method="POST">
+    <form action="<?= APP_URL ?>/controllers/AuthController?action=reset" method="POST">
       <?= csrfField() ?>
       <input type="hidden" name="token" value="<?= e($token) ?>">
 

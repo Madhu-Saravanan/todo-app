@@ -14,7 +14,7 @@ $action = $_GET['action'] ?? '';
 if ($action === 'logout') {
     session_unset();
     session_destroy();
-    header('Location: ' . APP_URL . '/views/auth/login.php');
+    header('Location: ' . APP_URL . '/views/auth/login');
     exit;
 }
 
@@ -38,7 +38,7 @@ if ($action === 'signup' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($errors) {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => implode('<br>', $errors)];
-        header('Location: ' . APP_URL . '/views/auth/signup.php');
+        header('Location: ' . APP_URL . '/views/auth/signup');
         exit;
     }
 
@@ -47,10 +47,10 @@ if ($action === 'signup' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id']   = $userId;
         $_SESSION['user_name'] = $name;
         $_SESSION['flash']     = ['type' => 'success', 'msg' => 'Welcome aboard, ' . htmlspecialchars($name) . '! 🎉'];
-        header('Location: ' . APP_URL . '/views/dashboard.php');
+        header('Location: ' . APP_URL . '/views/dashboard');
     } else {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Registration failed. Please try again.'];
-        header('Location: ' . APP_URL . '/views/auth/signup.php');
+        header('Location: ' . APP_URL . '/views/auth/signup');
     }
     exit;
 }
@@ -81,10 +81,10 @@ if ($action === 'login' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Welcome back, ' . htmlspecialchars($user['name']) . '!'];
-        header('Location: ' . APP_URL . '/views/dashboard.php');
+        header('Location: ' . APP_URL . '/views/dashboard');
     } else {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Invalid email or password.'];
-        header('Location: ' . APP_URL . '/views/auth/login.php');
+        header('Location: ' . APP_URL . '/views/auth/login');
     }
     exit;
 }
@@ -104,12 +104,12 @@ if ($action === 'forgot' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($user) {
         $token = bin2hex(random_bytes(32));
         UserModel::setResetToken((int)$user['id'], $token);
-        $resetUrl = APP_URL . '/views/auth/reset_password.php?token=' . urlencode($token);
+        $resetUrl = APP_URL . '/views/auth/reset_password?token=' . urlencode($token);
         // In a real app you would send an email. We log it here for demo.
         error_log("[Password Reset] URL: $resetUrl");
     }
 
-    header('Location: ' . APP_URL . '/views/auth/forgot_password.php');
+    header('Location: ' . APP_URL . '/views/auth/forgot_password');
     exit;
 }
 
@@ -123,18 +123,18 @@ if ($action === 'reset' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = UserModel::findByResetToken($token);
     if (!$user) {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Invalid or expired reset link.'];
-        header('Location: ' . APP_URL . '/views/auth/forgot_password.php');
+        header('Location: ' . APP_URL . '/views/auth/forgot_password');
         exit;
     }
 
     if (strlen($password) < 8 || $password !== $confirm) {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Passwords do not match or are too short.'];
-        header('Location: ' . APP_URL . '/views/auth/reset_password.php?token=' . urlencode($token));
+        header('Location: ' . APP_URL . '/views/auth/reset_password?token=' . urlencode($token));
         exit;
     }
 
     UserModel::updatePassword((int)$user['id'], $password);
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Password updated! You can now log in.'];
-    header('Location: ' . APP_URL . '/views/auth/login.php');
+    header('Location: ' . APP_URL . '/views/auth/login');
     exit;
 }

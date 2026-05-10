@@ -12,7 +12,7 @@ require_once __DIR__ . '/../config/config.php';
  */
 function requireAuth(): void {
     if (empty($_SESSION['user_id'])) {
-        header('Location: ' . APP_URL . '/views/auth/login.php');
+        header('Location: ' . APP_URL . '/views/auth/login');
         exit;
     }
 }
@@ -22,7 +22,7 @@ function requireAuth(): void {
  */
 function redirectIfAuth(): void {
     if (!empty($_SESSION['user_id'])) {
-        header('Location: ' . APP_URL . '/views/dashboard.php');
+        header('Location: ' . APP_URL . '/views/dashboard');
         exit;
     }
 }

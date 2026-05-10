@@ -26,19 +26,19 @@ $csrf       = generateCsrfToken();
   <ul class="sidebar-nav flex-grow-1 mt-3">
     <li class="nav-label">MAIN</li>
     <li>
-      <a href="<?= APP_URL ?>/views/dashboard.php"
+      <a href="<?= APP_URL ?>/views/dashboard"
          class="sidebar-link <?= str_contains($currentUri, 'dashboard') ? 'active' : '' ?>">
         <i class="bi bi-grid-1x2-fill"></i> Dashboard
       </a>
     </li>
     <li>
-      <a href="<?= APP_URL ?>/views/todos/index.php"
+      <a href="<?= APP_URL ?>/views/todos/index"
          class="sidebar-link <?= str_contains($currentUri, 'todos/index') ? 'active' : '' ?>">
         <i class="bi bi-check2-square"></i> All Todos
       </a>
     </li>
     <li>
-      <a href="<?= APP_URL ?>/views/todos/create.php"
+      <a href="<?= APP_URL ?>/views/todos/create"
          class="sidebar-link <?= str_contains($currentUri, 'todos/create') ? 'active' : '' ?>">
         <i class="bi bi-plus-circle-fill"></i> New Todo
       </a>
@@ -47,7 +47,7 @@ $csrf       = generateCsrfToken();
     <li class="nav-label mt-3">GROUPS</li>
     <?php foreach ($groups as $g): ?>
     <li>
-      <a href="<?= APP_URL ?>/views/groups/view.php?id=<?= $g['id'] ?>"
+      <a href="<?= APP_URL ?>/views/groups/view?id=<?= $g['id'] ?>"
          class="sidebar-link <?= str_contains($currentUri, 'groups/view') && ($_GET['id'] ?? 0) == $g['id'] ? 'active' : '' ?>"
          style="border-left: 3px solid <?= e($g['color']) ?>">
         <i class="bi bi-folder-fill" style="color:<?= e($g['color']) ?>"></i>
@@ -58,7 +58,7 @@ $csrf       = generateCsrfToken();
     <?php endforeach; ?>
 
     <li>
-      <a href="<?= APP_URL ?>/views/groups/index.php"
+      <a href="<?= APP_URL ?>/views/groups/index"
          class="sidebar-link <?= str_contains($currentUri, 'groups/index') ? 'active' : '' ?>">
         <i class="bi bi-folder-plus"></i> Manage Groups
       </a>
@@ -74,7 +74,7 @@ $csrf       = generateCsrfToken();
         <div class="user-role">Member</div>
       </div>
     </div>
-    <a href="<?= APP_URL ?>/controllers/AuthController.php?action=logout"
+    <a href="<?= APP_URL ?>/controllers/AuthController?action=logout"
        class="btn btn-sm btn-outline-danger w-100 mt-2">
       <i class="bi bi-box-arrow-right"></i> Logout
     </a>
@@ -120,7 +120,7 @@ $csrf       = generateCsrfToken();
           <?php endif; ?>
           <?php foreach ($dueToday as $dt): ?>
           <li>
-            <a class="dropdown-item small" href="<?= APP_URL ?>/views/todos/edit.php?id=<?= $dt['id'] ?>">
+            <a class="dropdown-item small" href="<?= APP_URL ?>/views/todos/edit?id=<?= $dt['id'] ?>">
               <span class="badge bg-<?= $dt['priority'] === 'high' ? 'danger' : ($dt['priority'] === 'medium' ? 'warning' : 'secondary') ?> me-1">
                 <?= e($dt['priority']) ?>
               </span>

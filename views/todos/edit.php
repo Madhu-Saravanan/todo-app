@@ -16,7 +16,7 @@ $todo = TodoModel::getById($id, $uid);
 
 if (!$todo) {
     $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Todo not found.'];
-    header('Location: ' . APP_URL . '/views/todos/index.php');
+    header('Location: ' . APP_URL . '/views/todos/index');
     exit;
 }
 
@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
   <div class="col-lg-7 col-xl-6">
 
     <div class="d-flex align-items-center gap-3 mb-4">
-      <a href="<?= APP_URL ?>/views/todos/index.php" class="btn btn-sm btn-ghost">
+      <a href="<?= APP_URL ?>/views/todos/index" class="btn btn-sm btn-ghost">
         <i class="bi bi-arrow-left"></i>
       </a>
       <div>
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
     <div class="app-card fade-in-up">
       <div class="app-card-body">
-        <form action="<?= APP_URL ?>/controllers/TodoController.php" method="POST" novalidate>
+        <form action="<?= APP_URL ?>/controllers/TodoController" method="POST" novalidate>
           <?= csrfField() ?>
           <input type="hidden" name="action" value="update">
           <input type="hidden" name="id"     value="<?= $todo['id'] ?>">
@@ -123,7 +123,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <button type="submit" class="btn btn-primary py-2 fw-semibold">
               <i class="bi bi-save-fill me-1"></i> Save Changes
             </button>
-            <a href="<?= APP_URL ?>/views/todos/index.php" class="btn btn-outline-secondary">
+            <a href="<?= APP_URL ?>/views/todos/index" class="btn btn-outline-secondary">
               Cancel
             </a>
           </div>
@@ -133,7 +133,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <hr style="border-color:rgba(239,68,68,.2);margin:1.5rem 0">
         <div class="text-center">
           <p class="small text-muted mb-2">Soft-delete this todo (can be recovered from DB).</p>
-          <button class="btn btn-sm btn-outline-danger" data-delete-id="<?= $todo['id'] ?>" data-redirect="<?= APP_URL ?>/views/todos/index.php">
+          <button class="btn btn-sm btn-outline-danger" data-delete-id="<?= $todo['id'] ?>" data-redirect="<?= APP_URL ?>/views/todos/index">
             <i class="bi bi-trash me-1"></i> Delete Todo
           </button>
         </div>

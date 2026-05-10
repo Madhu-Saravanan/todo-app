@@ -19,7 +19,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
   <div class="col-lg-7 col-xl-6">
 
     <div class="d-flex align-items-center gap-3 mb-4">
-      <a href="<?= APP_URL ?>/views/todos/index.php" class="btn btn-sm btn-ghost">
+      <a href="<?= APP_URL ?>/views/todos/index" class="btn btn-sm btn-ghost">
         <i class="bi bi-arrow-left"></i>
       </a>
       <div>
@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
     <div class="app-card fade-in-up">
       <div class="app-card-body">
-        <form action="<?= APP_URL ?>/controllers/TodoController.php" method="POST" novalidate>
+        <form action="<?= APP_URL ?>/controllers/TodoController" method="POST" novalidate>
           <?= csrfField() ?>
           <input type="hidden" name="action" value="create">
 
@@ -102,7 +102,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             <button type="submit" class="btn btn-primary py-2 fw-semibold">
               <i class="bi bi-plus-circle-fill me-1"></i> Create Todo
             </button>
-            <a href="<?= APP_URL ?>/views/todos/index.php" class="btn btn-outline-secondary">
+            <a href="<?= APP_URL ?>/views/todos/index" class="btn btn-outline-secondary">
               Cancel
             </a>
           </div>

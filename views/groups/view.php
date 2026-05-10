@@ -16,7 +16,7 @@ $group   = GroupModel::getById($groupId, $uid);
 
 if (!$group) {
     $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Group not found.'];
-    header('Location: ' . APP_URL . '/views/groups/index.php');
+    header('Location: ' . APP_URL . '/views/groups/index');
     exit;
 }
 
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 ?>
 <!-- Header -->
 <div class="d-flex align-items-center gap-3 mb-4">
-  <a href="<?= APP_URL ?>/views/groups/index.php" class="btn btn-sm btn-ghost">
+  <a href="<?= APP_URL ?>/views/groups/index" class="btn btn-sm btn-ghost">
     <i class="bi bi-arrow-left"></i>
   </a>
   <div class="d-flex align-items-center gap-3 flex-grow-1">
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
       <?php endif; ?>
     </div>
   </div>
-  <a href="<?= APP_URL ?>/views/todos/create.php" class="btn btn-primary btn-sm">
+  <a href="<?= APP_URL ?>/views/todos/create" class="btn btn-primary btn-sm">
     <i class="bi bi-plus-lg me-1"></i> Add Todo
   </a>
 </div>
@@ -123,7 +123,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="empty-state">
   <i class="bi bi-inbox"></i>
   <h5>No todos in this group</h5>
-  <a href="<?= APP_URL ?>/views/todos/create.php" class="btn btn-sm btn-primary mt-2">
+  <a href="<?= APP_URL ?>/views/todos/create" class="btn btn-sm btn-primary mt-2">
     <i class="bi bi-plus me-1"></i> Add Todo
   </a>
 </div>
@@ -151,7 +151,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
           </button>
           <ul class="dropdown-menu dropdown-menu-end shadow">
             <li>
-              <a class="dropdown-item small" href="<?= APP_URL ?>/views/todos/edit.php?id=<?= $t['id'] ?>">
+              <a class="dropdown-item small" href="<?= APP_URL ?>/views/todos/edit?id=<?= $t['id'] ?>">
                 <i class="bi bi-pencil me-2"></i>Edit
               </a>
             </li>

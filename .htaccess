@@ -24,6 +24,12 @@ Options -MultiViews
     # HTML forms POST directly to those scripts.
     RewriteRule ^(config|models|includes|database)/ - [F,L]
 
+    # Serve extensionless URLs as .php files (hides tech stack)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.+)$ $1.php [L]
+
     # Optional: redirect bare /ToDo/ to index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

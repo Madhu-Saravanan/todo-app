@@ -148,7 +148,7 @@ function initStatusToggles() {
         : this.value;
       const csrf   = getMetaCsrf();
 
-      fetch(APP_URL + '/ajax/todo_status.php', {
+      fetch(APP_URL + '/ajax/todo_status', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -197,7 +197,7 @@ function initDeleteButtons() {
       const csrf     = getMetaCsrf();
       const card     = document.querySelector(`.todo-card[data-id="${todoId}"]`);
 
-      fetch(APP_URL + '/ajax/todo_delete.php', {
+      fetch(APP_URL + '/ajax/todo_delete', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',

@@ -166,7 +166,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
               <?= e($t['group_name']) ?>
             </span>
             <?php endif; ?>
-            <a href="<?= APP_URL ?>/views/todos/edit.php?id=<?= $t['id'] ?>"
+            <a href="<?= APP_URL ?>/views/todos/edit?id=<?= $t['id'] ?>"
                class="btn btn-sm btn-ghost py-0 px-2"><i class="bi bi-pencil-fill"></i></a>
           </li>
           <?php endforeach; ?>
@@ -185,7 +185,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
     <div class="app-card h-100">
       <div class="app-card-header">
         <h6 class="mb-0 fw-semibold"><i class="bi bi-folder2-open me-2" style="color:var(--info)"></i>My Groups</h6>
-        <a href="<?= APP_URL ?>/views/groups/index.php" class="btn btn-sm btn-ghost py-0 small">Manage</a>
+        <a href="<?= APP_URL ?>/views/groups/index" class="btn btn-sm btn-ghost py-0 small">Manage</a>
       </div>
       <div class="app-card-body p-0">
         <?php if (empty($groups)): ?>
@@ -203,7 +203,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
             <span class="badge" style="background:rgba(255,255,255,.07);color:var(--text-muted)">
               <?= (int)$g['todo_count'] ?>
             </span>
-            <a href="<?= APP_URL ?>/views/groups/view.php?id=<?= $g['id'] ?>"
+            <a href="<?= APP_URL ?>/views/groups/view?id=<?= $g['id'] ?>"
                class="btn btn-sm btn-ghost py-0 px-1"><i class="bi bi-arrow-right"></i></a>
           </li>
           <?php endforeach; ?>
@@ -218,13 +218,13 @@ require_once __DIR__ . '/../includes/sidebar.php';
     <div class="app-card h-100">
       <div class="app-card-header">
         <h6 class="mb-0 fw-semibold"><i class="bi bi-clock-history me-2" style="color:var(--success)"></i>Recent Todos</h6>
-        <a href="<?= APP_URL ?>/views/todos/index.php" class="btn btn-sm btn-ghost py-0 small">View All</a>
+        <a href="<?= APP_URL ?>/views/todos/index" class="btn btn-sm btn-ghost py-0 small">View All</a>
       </div>
       <div class="app-card-body p-0">
         <?php if (empty($recent)): ?>
         <div class="empty-state py-3">
           <i class="bi bi-check2-square" style="font-size:2rem"></i>
-          <p class="small mt-2">No todos yet. <a href="<?= APP_URL ?>/views/todos/create.php">Create one!</a></p>
+          <p class="small mt-2">No todos yet. <a href="<?= APP_URL ?>/views/todos/create">Create one!</a></p>
         </div>
         <?php else: ?>
         <ul class="list-group list-group-flush">
@@ -256,7 +256,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
               <span class="badge badge-status-<?= e($t['status']) ?> text-capitalize">
                 <?= str_replace('_', ' ', e($t['status'])) ?>
               </span>
-              <a href="<?= APP_URL ?>/views/todos/edit.php?id=<?= $t['id'] ?>"
+              <a href="<?= APP_URL ?>/views/todos/edit?id=<?= $t['id'] ?>"
                  class="btn btn-sm btn-ghost py-0 px-1"><i class="bi bi-pencil"></i></a>
             </div>
           </li>
@@ -301,7 +301,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
             <span class="badge" style="background:rgba(255,255,255,.07);color:var(--text-secondary);font-size:.68rem;border-left:3px solid ${priorityColor(t.priority)}">${t.priority}</span>
             <span class="badge badge-status-${t.status}" style="font-size:.68rem">${statusLabel(t.status)}</span>
             ${t.group_name ? `<span class="badge" style="background:rgba(99,102,241,.15);color:#818cf8;font-size:.68rem">${t.group_name}</span>` : ''}
-            <a href="<?= APP_URL ?>/views/todos/edit.php?id=${t.id}" class="btn btn-sm btn-ghost py-0 px-1"><i class="bi bi-pencil"></i></a>
+            <a href="<?= APP_URL ?>/views/todos/edit?id=${t.id}" class="btn btn-sm btn-ghost py-0 px-1"><i class="bi bi-pencil"></i></a>
           </div>
         </div>
       </li>`).join('');
@@ -339,7 +339,7 @@ require_once __DIR__ . '/../includes/sidebar.php';
       params.set('priority', 'high');
     }
 
-    fetch(`<?= APP_URL ?>/api/todos.php?${params}`)
+    fetch(`<?= APP_URL ?>/api/todos?${params}`)
       .then(r => r.json())
       .then(json => renderTodos(json.data, label))
       .catch(() => { panelBody.innerHTML = '<p class="text-danger small p-3">Failed to load tasks.</p>'; });

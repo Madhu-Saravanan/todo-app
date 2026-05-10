@@ -35,17 +35,17 @@ if ($action === 'create') {
 
     if (empty($data['title'])) {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Todo title is required.'];
-        header('Location: ' . APP_URL . '/views/todos/create.php');
+        header('Location: ' . APP_URL . '/views/todos/create');
         exit;
     }
 
     $id = TodoModel::create($uid, $data);
     if ($id) {
         $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Todo created successfully! ✅'];
-        header('Location: ' . APP_URL . '/views/todos/index.php');
+        header('Location: ' . APP_URL . '/views/todos/index');
     } else {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Failed to create todo.'];
-        header('Location: ' . APP_URL . '/views/todos/create.php');
+        header('Location: ' . APP_URL . '/views/todos/create');
     }
     exit;
 }
@@ -66,7 +66,7 @@ if ($action === 'update') {
 
     if (empty($data['title'])) {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Todo title is required.'];
-        header('Location: ' . APP_URL . '/views/todos/edit.php?id=' . $id);
+        header('Location: ' . APP_URL . '/views/todos/edit?id=' . $id);
         exit;
     }
 
@@ -76,7 +76,7 @@ if ($action === 'update') {
     } else {
         $_SESSION['flash'] = ['type' => 'warning', 'msg' => 'No changes detected.'];
     }
-    header('Location: ' . APP_URL . '/views/todos/index.php');
+    header('Location: ' . APP_URL . '/views/todos/index');
     exit;
 }
 
@@ -89,7 +89,7 @@ if ($action === 'delete') {
     } else {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Could not delete todo.'];
     }
-    header('Location: ' . APP_URL . '/views/todos/index.php');
+    header('Location: ' . APP_URL . '/views/todos/index');
     exit;
 }
 
@@ -104,7 +104,7 @@ if ($action === 'group_create') {
 
     if (empty($data['name'])) {
         $_SESSION['flash'] = ['type' => 'danger', 'msg' => 'Group name is required.'];
-        header('Location: ' . APP_URL . '/views/groups/index.php');
+        header('Location: ' . APP_URL . '/views/groups/index');
         exit;
     }
 
@@ -112,7 +112,7 @@ if ($action === 'group_create') {
     $_SESSION['flash'] = $id
         ? ['type' => 'success', 'msg' => 'Group created! 📁']
         : ['type' => 'danger',  'msg' => 'Failed to create group.'];
-    header('Location: ' . APP_URL . '/views/groups/index.php');
+    header('Location: ' . APP_URL . '/views/groups/index');
     exit;
 }
 
@@ -128,7 +128,7 @@ if ($action === 'group_update') {
 
     GroupModel::update($id, $uid, $data);
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Group updated! ✏️'];
-    header('Location: ' . APP_URL . '/views/groups/index.php');
+    header('Location: ' . APP_URL . '/views/groups/index');
     exit;
 }
 
@@ -137,10 +137,10 @@ if ($action === 'group_delete') {
     $id = (int)($_POST['id'] ?? 0);
     GroupModel::delete($id, $uid);
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Group deleted. 🗑️'];
-    header('Location: ' . APP_URL . '/views/groups/index.php');
+    header('Location: ' . APP_URL . '/views/groups/index');
     exit;
 }
 
 // Fallback
-header('Location: ' . APP_URL . '/views/todos/index.php');
+header('Location: ' . APP_URL . '/views/todos/index');
 exit;

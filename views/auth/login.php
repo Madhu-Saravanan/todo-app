@@ -51,7 +51,7 @@ $csrf      = generateCsrfToken();
     <?php endif; ?>
 
     <!-- Login Form -->
-    <form action="<?= APP_URL ?>/controllers/AuthController.php?action=login" method="POST" novalidate>
+    <form action="<?= APP_URL ?>/controllers/AuthController?action=login" method="POST" novalidate>
       <?= csrfField() ?>
 
       <div class="mb-3">
@@ -80,7 +80,7 @@ $csrf      = generateCsrfToken();
           <input class="form-check-input" type="checkbox" id="remember" name="remember" value="1">
           <label class="form-check-label small text-muted" for="remember">Remember me</label>
         </div>
-        <a href="<?= APP_URL ?>/views/auth/forgot_password.php" class="small text-decoration-none" style="color:var(--primary)">
+        <a href="<?= APP_URL ?>/views/auth/forgot_password" class="small text-decoration-none" style="color:var(--primary)">
           Forgot password?
         </a>
       </div>
@@ -92,7 +92,7 @@ $csrf      = generateCsrfToken();
 
     <p class="text-center text-muted small mt-3 mb-0">
       Don't have an account?
-      <a href="<?= APP_URL ?>/views/auth/signup.php" class="text-decoration-none fw-semibold" style="color:var(--primary)">
+      <a href="<?= APP_URL ?>/views/auth/signup" class="text-decoration-none fw-semibold" style="color:var(--primary)">
         Create one
       </a>
     </p>

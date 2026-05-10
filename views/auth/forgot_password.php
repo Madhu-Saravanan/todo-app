@@ -44,7 +44,7 @@ redirectIfAuth();
     <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <form action="<?= APP_URL ?>/controllers/AuthController.php?action=forgot" method="POST">
+    <form action="<?= APP_URL ?>/controllers/AuthController?action=forgot" method="POST">
       <?= csrfField() ?>
       <div class="mb-4">
         <label class="form-label" for="email">Email Address</label>
@@ -61,7 +61,7 @@ redirectIfAuth();
 
     <p class="text-center text-muted small mt-3 mb-0">
       Remembered it?
-      <a href="<?= APP_URL ?>/views/auth/login.php" class="text-decoration-none fw-semibold" style="color:var(--primary)">
+      <a href="<?= APP_URL ?>/views/auth/login" class="text-decoration-none fw-semibold" style="color:var(--primary)">
         Back to login
       </a>
     </p>

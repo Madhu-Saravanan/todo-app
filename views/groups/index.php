@@ -62,7 +62,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow">
               <li>
-                <a class="dropdown-item small" href="<?= APP_URL ?>/views/groups/view.php?id=<?= $g['id'] ?>">
+                <a class="dropdown-item small" href="<?= APP_URL ?>/views/groups/view?id=<?= $g['id'] ?>">
                   <i class="bi bi-eye me-2"></i>View Todos
                 </a>
               </li>
@@ -88,7 +88,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         </p>
         <?php endif; ?>
 
-        <a href="<?= APP_URL ?>/views/groups/view.php?id=<?= $g['id'] ?>"
+        <a href="<?= APP_URL ?>/views/groups/view?id=<?= $g['id'] ?>"
            class="btn btn-sm w-100"
            style="background:<?= e($g['color']) ?>22;color:<?= e($g['color']) ?>;border:1px solid <?= e($g['color']) ?>44">
           <i class="bi bi-arrow-right me-1"></i> View Todos
@@ -112,7 +112,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="<?= APP_URL ?>/controllers/TodoController.php" method="POST">
+        <form action="<?= APP_URL ?>/controllers/TodoController" method="POST">
           <?= csrfField() ?>
           <input type="hidden" name="action" value="group_create">
 
@@ -164,7 +164,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form action="<?= APP_URL ?>/controllers/TodoController.php" method="POST">
+        <form action="<?= APP_URL ?>/controllers/TodoController" method="POST">
           <?= csrfField() ?>
           <input type="hidden" name="action" value="group_update">
           <input type="hidden" name="id" id="eg_id">
@@ -194,7 +194,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 </div>
 
 <!-- Hidden delete form -->
-<form id="deleteGroupForm" action="<?= APP_URL ?>/controllers/TodoController.php" method="POST" style="display:none">
+<form id="deleteGroupForm" action="<?= APP_URL ?>/controllers/TodoController" method="POST" style="display:none">
   <?= csrfField() ?>
   <input type="hidden" name="action" value="group_delete">
   <input type="hidden" name="id" id="deleteGroupId">

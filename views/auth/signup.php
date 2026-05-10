@@ -47,7 +47,7 @@ $pageTitle = 'Create Account';
     <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <form action="<?= APP_URL ?>/controllers/AuthController.php?action=signup"
+    <form action="<?= APP_URL ?>/controllers/AuthController?action=signup"
           method="POST" novalidate id="signupForm">
       <?= csrfField() ?>
 
@@ -103,7 +103,7 @@ $pageTitle = 'Create Account';
 
     <p class="text-center text-muted small mt-3 mb-0">
       Already have an account?
-      <a href="<?= APP_URL ?>/views/auth/login.php" class="text-decoration-none fw-semibold" style="color:var(--primary)">
+      <a href="<?= APP_URL ?>/views/auth/login" class="text-decoration-none fw-semibold" style="color:var(--primary)">
         Sign in
       </a>
     </p>

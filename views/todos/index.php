@@ -38,7 +38,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
     <h4 class="fw-bold mb-0">All Todos</h4>
     <p class="text-muted small mb-0"><?= $total ?> task<?= $total !== 1 ? 's' : '' ?> found</p>
   </div>
-  <a href="<?= APP_URL ?>/views/todos/create.php" class="btn btn-primary">
+  <a href="<?= APP_URL ?>/views/todos/create" class="btn btn-primary">
     <i class="bi bi-plus-lg me-1"></i> New Todo
   </a>
 </div>
@@ -87,7 +87,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 
     <!-- Clear filters -->
     <?php if (array_filter($filters)): ?>
-    <a href="<?= APP_URL ?>/views/todos/index.php" class="btn btn-sm btn-outline-secondary">
+    <a href="<?= APP_URL ?>/views/todos/index" class="btn btn-sm btn-outline-secondary">
       <i class="bi bi-x-circle me-1"></i>Clear
     </a>
     <?php endif; ?>
@@ -99,7 +99,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <div class="empty-state">
   <i class="bi bi-inbox"></i>
   <h5>No todos found</h5>
-  <p class="small">Try adjusting your filters or <a href="<?= APP_URL ?>/views/todos/create.php">create a new todo</a>.</p>
+  <p class="small">Try adjusting your filters or <a href="<?= APP_URL ?>/views/todos/create">create a new todo</a>.</p>
 </div>
 <?php else: ?>
 
@@ -172,7 +172,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
               <option value="completed"   <?= $t['status'] === 'completed'   ? 'selected' : '' ?>>Completed</option>
             </select>
 
-            <a href="<?= APP_URL ?>/views/todos/edit.php?id=<?= $t['id'] ?>"
+            <a href="<?= APP_URL ?>/views/todos/edit?id=<?= $t['id'] ?>"
                class="btn btn-sm btn-ghost py-0 px-2"
                title="Edit"
                onclick="event.stopPropagation()">
